@@ -1,10 +1,10 @@
 <template>
   <div class="logoMain">
-    <img :src="logoSrc[0]">
+    <img :src="logoSrc[logoSelected]">
     <span class="logoTriangle" v-on:click="showFlag=!showFlag"></span>
     <transition name="logoShow">
       <ul v-show="showFlag" class="logoList">
-        <li v-for="item in logoSrc">
+        <li v-for="(item,key) in logoSrc" v-on:click="logoChoice(key)">
           <img :src="item"/>
         </li>
       </ul>
@@ -15,16 +15,24 @@
   export default {
     data: function () {
       return {
-        selectedNow: 0,
+        logoSelected: 0,
         showFlag:false,
         logoSrc: [
-          require('../assets/360_logo.png')
-          ,
           require('../assets/baidu_logo.png')
+          ,
+          require('../assets/360_logo.png')
           ,
           require('../assets/sougou_logo.png')
         ]
       }
+    },
+    methods:{
+        logoChoice:function (key) {
+            this.$emit("choice",key);
+            console.log("key: ",key);
+            this.logoSelected=key;
+            this.showFlag=!this.showFlag;
+        }
     }
   }
 </script>
@@ -36,15 +44,12 @@
     position: relative;
   }
 
-  .logoMain >img{
-    margin-left: -7rem;
-  }
   .logoTriangle {
     height: 0;
     width: 0;
     border: 10px solid;
     border-color: #000 transparent transparent transparent;
-    transform: translate(-1rem, 0.4rem);
+    transform: translate(-4rem, 0.4rem);
     cursor: pointer;
   }
 
@@ -77,5 +82,14 @@
   .logoList li img{
     display: block;
     width: 100%;
+    cursor: pointer;
+  }
+
+  .logoShow-enter-active,.logoShow-leave-active{
+    transition: all .5s;
+  }
+  .logoShow-enter,.logoShow-leave-active{
+    opacity: 0;
+    transform: translateY(-20px);
   }
 </style>

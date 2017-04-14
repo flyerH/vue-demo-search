@@ -1,14 +1,14 @@
 <template>
   <div id="app">
-    <logo></logo>
+    <search></search>
   </div>
 </template>
 
 <script>
-import logo from './components/logo.vue';
+import search from './components/search.vue';
 export default {
   components: {
-    logo
+    search
   }
 }
 </script>
