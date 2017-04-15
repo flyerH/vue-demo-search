@@ -16,7 +16,7 @@
     data: function () {
       return {
         logoSelected: 0,
-        showFlag:false,
+        showFlag: false,
         logoSrc: [
           require('../assets/baidu_logo.png')
           ,
@@ -26,15 +26,15 @@
         ]
       }
     },
-    methods:{
-        logoChoice:function (key) {
-            this.$emit("choice",key);
-            console.log("key: ",key);
-            this.logoSelected=key;
-            this.showFlag=!this.showFlag;
-        }
+    methods: {
+      logoChoice: function (key) {
+        this.$emit("choice", key);
+        this.logoSelected = key;
+        this.showFlag = !this.showFlag;
+      }
     }
   }
+
 </script>
 <style type="text/css">
   .logoMain {
@@ -42,6 +42,8 @@
     align-items: center;
     justify-content: center;
     position: relative;
+    /*transform: translateX(2rem);  //不能用transform，transform会生成一个新的层叠上下文，导致input位于logoList上层*/
+    margin-left: 3rem;
   }
 
   .logoTriangle {
@@ -53,7 +55,7 @@
     cursor: pointer;
   }
 
-  .logoList{
+  .logoList {
     display: block;
     box-sizing: border-box;
     margin: 0;
@@ -62,12 +64,12 @@
     list-style: none;
     width: 230px;
     top: 100%;
-
     z-index: 999;
     border: 1px solid lightsteelblue;
+    background-color: white;
   }
 
-  .logoList li{
+  .logoList li {
     width: 100%;
     height: 5rem;
     line-height: 5rem;
@@ -75,20 +77,21 @@
     align-items: center;
   }
 
-  .logoList li:hover{
+  .logoList li:hover {
     background-color: wheat;
   }
 
-  .logoList li img{
+  .logoList li img {
     display: block;
     width: 100%;
     cursor: pointer;
   }
 
-  .logoShow-enter-active,.logoShow-leave-active{
-    transition: all .5s;
+  .logoShow-enter-active, .logoShow-leave-active {
+    transition: all .1s;
   }
-  .logoShow-enter,.logoShow-leave-active{
+
+  .logoShow-enter, .logoShow-leave-active {
     opacity: 0;
     transform: translateY(-20px);
   }
