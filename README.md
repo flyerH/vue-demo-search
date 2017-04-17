@@ -18,5 +18,6 @@ npm run build
 npm run build --report
 ```
 ### 一个简单的搜索框界面
+#### [Demo](http://www.strawtc.cn:8998/vue-search/ "搜索界面")
 参考 https://github.com/lavyun/vue-demo-search  
 自己用vue.js重新写了一遍，有许多改动
